@@ -26,3 +26,10 @@ Route::middleware("auth)->resource("student",studentCon::class)
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get("/students",
+function() {
+
+    return view("student.create");
+}
+);

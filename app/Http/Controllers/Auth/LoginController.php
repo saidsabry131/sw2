@@ -83,13 +83,13 @@ class LoginController extends Controller
         // Check the authenticated user's type and redirect accordingly
         $userType = auth()->user()->user_type;
 
-       // return $userType;
+        return $userType;
         if ($userType === 'admin') {
             return view("admin");
         } elseif ($userType === 'doctor') {
             return view("doctor");
         } else {
-            return "redirect()->route('home')";
+            return view("home");
         }
     } else {
         // Authentication failed, return back to login with error message
