@@ -9,7 +9,7 @@ class TempUser extends Model
 {
     use HasFactory;
 
-    protected $table="temp_table";
+    protected $table="tempp_table";
 
     protected $fillable=["course_code","user_id"];
 }

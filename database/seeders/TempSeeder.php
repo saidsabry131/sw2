@@ -13,8 +13,8 @@ class TempSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table("temp_table")->insert([
-            "course_code"=>"kbs",
+        DB::table("tempp_table")->insert([
+            "course_code"=>"OS",
             "user_id"=>1,
             
             
@@ -22,13 +22,25 @@ class TempSeeder extends Seeder
         ]
         );
 
-        DB::table("temp_table")->insert([
-            "course_code"=>"DSA",
+        DB::table("tempp_table")->insert([
+            "course_code"=>"DB",
             "user_id"=>1,
             
             
             
         ]
+        
         );
+
+
+        // DB::table("tempp_table")->insert([
+        //     "course_code"=>"DB",
+        //     "user_id"=>1,
+            
+            
+            
+        // ]
+        
+        // );
     }
 }
