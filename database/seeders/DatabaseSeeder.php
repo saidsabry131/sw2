@@ -4,7 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Department;
 use Illuminate\Database\Seeder;
+use Database\Seeders\TempSeeder;
 use Database\Seeders\userSeeder;
+use Database\Seeders\GradeSeeder;
+use Database\Seeders\CourseSeeder;
 use Illuminate\Foundation\Auth\User;
 use Database\Seeders\departmentSeeder;
 
@@ -104,11 +107,47 @@ class DatabaseSeeder extends Seeder
     // }
 
 
+        // $this->call(
+        //     [
+        //         userSeeder::class
+        //     ]
+        //     );
+
+
+        // $this->call(
+        //     [
+        //         departmentSeeder::class
+        //     ]
+        //     );
+
+
         $this->call(
             [
-                userSeeder::class
+                //CourseSeeder::class
+                //GradeSeeder::class
+                //departmentSeeder::class
+                //userSeeder::class
+                TempSeeder::class
             ]
             );
+
+
+
+        // $this->call(
+        //     [
+        //         GradeSeeder::class
+        //     ]
+        //     );
+
+
+
+        // $this->call(
+        //     [
+        //         TempSeeder::class
+        //     ]
+        //     );
+
+
     }
 }
 

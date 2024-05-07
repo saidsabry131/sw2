@@ -13,10 +13,29 @@ class departmentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table("departments")->insert([
-            "depart_code"=>"is",
-            "depart_name"=>"information system"
-        ]
+        DB::table("departments")->insert(
+       
+        [
+            "depart_code"=>"it",
+            "depart_name"=>"information technology"
+        ],
         );
+
+        DB::table("departments")->insert(
+       
+            [
+                "depart_code"=>"is",
+                "depart_name"=>"information system"
+            ],
+            );
+
+
+            DB::table("departments")->insert(
+       
+                [
+                    "depart_code"=>"cs",
+                    "depart_name"=>"computer science"
+                ],
+                );
     }
 }
