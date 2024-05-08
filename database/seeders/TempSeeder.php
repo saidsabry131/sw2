@@ -15,7 +15,7 @@ class TempSeeder extends Seeder
     {
         DB::table("tempp_table")->insert([
             "course_code"=>"OS",
-            "user_id"=>1,
+            "user_id"=>2,
             
             
             
@@ -24,7 +24,7 @@ class TempSeeder extends Seeder
 
         DB::table("tempp_table")->insert([
             "course_code"=>"DB",
-            "user_id"=>1,
+            "user_id"=>2,
             
             
             
@@ -33,14 +33,14 @@ class TempSeeder extends Seeder
         );
 
 
-        // DB::table("tempp_table")->insert([
-        //     "course_code"=>"DB",
-        //     "user_id"=>1,
+        DB::table("tempp_table")->insert([
+            "course_code"=>"kbs",
+            "user_id"=>2,
             
             
             
-        // ]
+        ]
         
-        // );
+        );
     }
 }

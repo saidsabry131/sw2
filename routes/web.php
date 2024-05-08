@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,15 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get("/students",
 function() {
 
-    return view("student.create");
+    return view("layout");
 }
 );
+
+
+
+
+Route::resource('/users', UserController::class);
+Route::post('/user', [UserController::class, 'store'])->name('user.store');
+
+
+

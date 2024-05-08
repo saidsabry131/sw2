@@ -81,9 +81,11 @@ class LoginController extends Controller
     // Attempt authentication with email and password
     $credentials = $request->only('email', 'password','user_type');
     if (auth()->attempt($credentials)) {
+
+       
         // Check the authenticated user's type and redirect accordingly
         $userType = auth()->user()->user_type;
-
+        return $userType;
         //return $userType;
         // if ($userType === 'admin') {
         //     return view("admin");
@@ -114,15 +116,15 @@ class LoginController extends Controller
         
         // Perform the query with the additional where condition
         $results = DB::table('tempp_table')
-            ->join('users', 'users.id', '=', 'temp_table.user_id')
-            ->join('courses', 'courses.course_code', '=', 'temp_table.course_code')
+            ->join('users', 'users.id', '=', 'tempp_table.user_id')
+            ->join('courses', 'courses.course_code', '=', 'tempp_table.course_code')
             ->select('courses.course_code', 'courses.course_name')
             ->where('users.email', '=', $email) // Add condition where users.email = authenticated user's email
             ->get();
          // This will execute the query and return a collection of results
     
         $resultsArray = $results->toArray();
-    
+            
         return $resultsArray;
     } else {
         // Authentication failed, return back to login with error message
