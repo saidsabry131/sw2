@@ -44,3 +44,11 @@ Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
 
 
+use App\Http\Controllers\DoctorController;
+
+
+Route::get('/doctor', [DoctorController::class, 'show'])->name('doctor.show');
+
+
+
+
