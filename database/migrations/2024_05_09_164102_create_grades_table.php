@@ -12,14 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('grades', function (Blueprint $table) {
-            $table->string('course_code'); // Added index for course_code
+            $table->string('course_code');
             $table->float('grade_score', 5, 2)->default(null);
+
+            // Define composite primary key
             
-            // Foreign key on course_code referencing courses(course_code)
-            $table->foreign('course_code')->references('course_code')->on('courses') // Optional: Specify action on update
-            ;
-            // Foreign key on user_id referencing users(id)
-            $table->foreignId('user_id')->references('id')->on('users');
+
+            // Define foreign key constraints
+            $table->foreign('course_code')->references('course_code')->on('courses')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            
+
+            
             $table->timestamps();
         });
     }
