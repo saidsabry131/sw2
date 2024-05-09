@@ -13,7 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::where('user_type', "student")->get();
+        // $data = User::where('user_type', "student")->get();
+        $data=user::all();
         return view("userView.index",["students"=>$data]);
     }
 
@@ -63,19 +64,29 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $userType)
-{
-//    if($userType==="student"){ $students = User::where('user_type', 'student')->get();
+    // public function show(string $userType)
+    // {
+    // //    if($userType==="student"){ $students = User::where('user_type', 'student')->get();
 
-//     // Pass the students to the view
-//     return view('userView.student', compact('students'));}
-//     else{
-//         $doctors = User::where('user_type', 'doctor')->get();
+    // //     // Pass the students to the view
+    // //     return view('userView.student', compact('students'));}
+    // //     else{
+    // //         $doctors = User::where('user_type', 'doctor')->get();
 
-//         // Pass the doctors to the view
-//         return view('userView.doctor', compact('doctors'));
-//     }
-}
+    // //         // Pass the doctors to the view
+    // //         return view('userView.doctor', compact('doctors'));
+    // //     }
+
+    //     $students=user::find()
+    // }
+
+
+    public function show(string $id)  {
+        
+        $data=user::find($id);
+
+        return view("userView.show",["user"=>$data]);
+    }
 
 
     /**
@@ -83,7 +94,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = user::find($id);
+        return view('userView.edit',["user"=>$data]);
     }
 
     /**
@@ -91,7 +103,10 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = user::find($id);
+        $input = $request->all();
+        $data->update($input);
+        return redirect('users')->with('flash_message', 'user Updated!');  
     }
 
     /**
@@ -99,7 +114,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        user::destroy($id);
+        return redirect('users')->with('flash_message', 'user deleted!'); 
     }
 
 
