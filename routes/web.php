@@ -39,7 +39,7 @@ function() {
 
 
 
-Route::resource('/users', UserController::class);
+Route::middleware("auth")->resource('/users', UserController::class);
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
 
@@ -48,6 +48,12 @@ use App\Http\Controllers\DoctorController;
 
 
 Route::get('/doctor', [DoctorController::class, 'show'])->name('doctor.show');
+
+
+Route::middleware('auth')->group(function () {
+    // Route to display the logged-in user's information
+    Route::get('/userinfo', [UserController::class, 'showUserInfo'])->name('userinfo');
+});
 
 
 
