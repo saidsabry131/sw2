@@ -28,7 +28,8 @@
     <div class="row">
         <div class="col-md-3">
             <div class="sidebar">
-                <a class="active" href="/">Home</a>
+                <a class="acytive" href="/">Home</a>
+                <a href="{{ url('/userinfo') }}">User Info</a>
                 <a href="{{ url('/users/')}}">student</a>
                 <a href="">Docter</a>
                 <a href="">Courses</a>

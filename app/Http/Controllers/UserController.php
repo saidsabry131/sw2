@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\TempUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -233,4 +234,18 @@ class UserController extends Controller
             return back()->withErrors(['error' => 'Failed to delete user.']);
         }
     }
+
+
+
+
+
+    public function showUserInfo()
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Return the userinfo view with the authenticated user's information
+        return view('userinfo', ['user' => $user]);
+    }
+
 }

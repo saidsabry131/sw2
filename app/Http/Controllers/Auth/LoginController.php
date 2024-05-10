@@ -17,7 +17,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/userinfo';
 
     /**
      * Create a new controller instance.
@@ -85,7 +85,9 @@ class LoginController extends Controller
        
         // Check the authenticated user's type and redirect accordingly
         $userType = auth()->user()->user_type;
-        return $userType;
+        
+
+        //return $userType;
         //return $userType;
         // if ($userType === 'admin') {
         //     return view("admin");
@@ -115,15 +117,30 @@ class LoginController extends Controller
         $email = $authenticatedUser->email;
         
         // Perform the query with the additional where condition
-        $results = DB::table('tempp_table')
-            ->join('users', 'users.id', '=', 'tempp_table.user_id')
-            ->join('courses', 'courses.course_code', '=', 'tempp_table.course_code')
-            ->select('courses.course_code', 'courses.course_name')
-            ->where('users.email', '=', $email) // Add condition where users.email = authenticated user's email
-            ->get();
+        // $results = DB::table('tempp_table')
+        //     ->join('users', 'users.id', '=', 'tempp_table.user_id')
+        //     ->join('courses', 'courses.course_code', '=', 'tempp_table.course_code')
+        //     ->select('courses.course_code', 'courses.course_name')
+        //     ->where('users.email', '=', $email) // Add condition where users.email = authenticated user's email
+        //     ->get();
          // This will execute the query and return a collection of results
-    
-        $resultsArray = $results->toArray();
+
+         $results = DB::select(
+            'SELECT users.name, users.id, users.phone, users.email, users.address
+            FROM users
+            WHERE users.email = ?', [$email]
+        );
+        
+        // Since DB::select() returns an array, check if there is at least one result
+        if (count($results) > 0) {
+            // Pass the first result (user) to the view
+            return view("userinfo", ["user" => $results[0]]);
+        } else {
+            // Handle the case when no user is found
+            // You may want to redirect or show a message indicating no user was found
+            return view("userinfo", ["user" => null]);
+        }
+        
             
         return $resultsArray;
     } else {
@@ -138,5 +155,7 @@ class LoginController extends Controller
    
 }
 
-    
+   
+
+
 }
