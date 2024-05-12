@@ -68,7 +68,7 @@ class DoctorController extends Controller
             ->join('users', 'users.id', '=', 'tempp_table.user_id')
             ->where('tempp_table.course_code', $courseCode->course_code)
             ->where('users.user_type', '!=', 'doctor')
-            ->select('users.name')
+            ->select('users.name','tempp_table.grade_score')
             ->get();
 
         // Return the list of students
