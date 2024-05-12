@@ -33,14 +33,14 @@
                 @can("admin-only-action")
                     
                 
-                <a href="{{ url('/users/')}}">student</a>
+                <a href="{{ url('/users/')}}">Student</a>
                
-                <a href="">Docter</a>
+                <a href="{{ url('/doctor') }}">Doctor</a>
                 @endcan
                 <a href="{{ url('/courses/' . $user_id) }}">Courses</a>
                 <a href="{{ url('/grades/' . $user_id) }}">Grades</a>
                 <a href="">Enrollment</a>
-                <a href="">payment</a>
+                <a href="">Payment</a>
               </div>
               
              

@@ -7,6 +7,7 @@
             <thead>
                 <tr>
                     <th>Student Name</th>
+                    <th>Course Code</th>
                     <th>Grade Score</th>
                 </tr>
             </thead>
@@ -14,7 +15,8 @@
                 @foreach ($students as $student)
                     <tr>
                         <td>{{ $student->name }}</td>
-                        {{-- <td>{{ $student->grade_score }}</td> --}}
+                        <td>{{ $course_code }}</td>
+                        <td>{{ $student->grade_score }}</td>
                     </tr>
                 @endforeach
             </tbody>
