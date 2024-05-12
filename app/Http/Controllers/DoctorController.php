@@ -53,10 +53,11 @@ class DoctorController extends Controller
      */
     public function show()
     {
+        
 
         $courseCode = DB::table('tempp_table')
         ->join('users', 'tempp_table.user_id', '=', 'users.id')
-        ->where('users.id', 2)
+        ->where('users.id', auth()->id())
         ->where('users.user_type', 'doctor')
         ->select('tempp_table.course_code')
         ->first();

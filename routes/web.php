@@ -39,7 +39,7 @@ function() {
 
 
 
-Route::middleware("auth")->resource('/users', UserController::class);
+Route::resource('/users', UserController::class);
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
 
@@ -52,14 +52,14 @@ use App\Http\Controllers\DoctorController;
 Route::get('/doctor', [DoctorController::class, 'show'])->name('doctor.show');
 
 
-Route::middleware('auth')->group(function () {
+Route::group(function () {
     
     Route::get('/userinfo', [UserController::class, 'showUserInfo'])->name('userinfo');
 });
 
 
 
-Route::middleware('auth')->prefix('users')->group(function () {
+Route::prefix('users')->group(function () {
     Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
 });
@@ -71,4 +71,4 @@ Route::resource('grades', GradeController::class);
 
 
 
-Route::middleware("auth")->resource('/courses', CourseController::class);
+Route::resource('/courses', CourseController::class);
