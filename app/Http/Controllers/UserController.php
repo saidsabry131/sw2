@@ -140,6 +140,8 @@ class UserController extends Controller
     }
     
 
+    
+
     /**
      * Display the specified resource.
      */
@@ -159,6 +161,8 @@ class UserController extends Controller
             JOIN courses ON courses.course_code = tempp_table.course_code
             WHERE tempp_table.user_id = ?
         ', [$id]);
+
+        
 
         return view("userView.show", ["user" => $user, "subjects" => $subjects]);
     }
