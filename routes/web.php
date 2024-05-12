@@ -44,6 +44,7 @@ Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
 
 
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\DoctorController;
 
 
@@ -56,5 +57,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::resource('grades', GradeController::class);
 
 

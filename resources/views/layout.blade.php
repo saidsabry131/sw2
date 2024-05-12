@@ -30,9 +30,15 @@
             <div class="sidebar">
                 <a class="acytive" href="/">Home</a>
                 <a href="{{ url('/userinfo') }}">User Info</a>
+                @can("admin-only-action")
+                    
+                
                 <a href="{{ url('/users/')}}">student</a>
+               
                 <a href="">Docter</a>
-                <a href="">Courses</a>
+                @endcan
+                <a href="{{ url('/courses/' . $user_id) }}">Courses</a>
+                <a href="{{ url('/grades/' . $user_id) }}">Grades</a>
                 <a href="">Enrollment</a>
                 <a href="">payment</a>
               </div>

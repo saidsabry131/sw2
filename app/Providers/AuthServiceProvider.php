@@ -26,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('admin-only-action', function (User $user) {
             return $user->user_type === 'admin';
         });
+
+        
     
     }
 }
