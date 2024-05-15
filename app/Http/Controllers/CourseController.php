@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -13,7 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        
+
     }
 
     /**
@@ -41,16 +43,31 @@ class CourseController extends Controller
         $student=User::find($id);
         $user_id = auth()->id() ;// The user ID for which you want to retrieve the courses
 
-            $courses = Course::select('courses.course_code', 'courses.course_name', 'tempp_table.grade_score')
-            ->join('tempp_table', 'courses.course_code', '=', 'tempp_table.course_code')
-            ->join('users', 'users.id', '=', 'tempp_table.user_id')
-            ->where('users.id', $user_id)
-            ->get();
+        $results = DB::table('tempp_table')
+        ->join('users', 'tempp_table.user_id', '=', 'users.id')
+        ->join('courses', 'tempp_table.course_code', '=', 'courses.course_code')
+        ->join('departments', 'courses.course_depart', '=', 'departments.depart_code')
+        ->where('users.id', $user_id)
+        ->select('courses.course_code', 'courses.course_name', 'tempp_table.grade_score', 'departments.depart_code')
+        ->get();
+    
+
+        $courseDetails = DB::table('tempp_table')
+        ->join('users', 'users.id', '=', 'tempp_table.user_id')
+        ->join('courses', 'courses.course_code', '=', 'tempp_table.course_code')
+        ->where('users.user_type', 'student')
+        ->select('courses.course_code', 'courses.course_name', DB::raw('COUNT(*) AS student_count'))
+        ->groupBy('courses.course_code', 'courses.course_name')
+        ->get();
 
 
         return view("courseview.show",[
-            "courses"=>$courses,
-            "student"=>$student]);
+            "courses"=>$results,
+            "student"=>$student,
+            "details"=>$courseDetails
+            
+        
+        ]);
     }
 
     /**

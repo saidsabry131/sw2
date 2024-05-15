@@ -27,6 +27,16 @@ class AuthServiceProvider extends ServiceProvider
             return $user->user_type === 'admin';
         });
 
+        Gate::define('student-only-action', function (User $user) {
+            return $user->user_type === 'student';
+        });
+
+        Gate::define('doctor-only-action', function (User $user) {
+            return $user->user_type === 'doctor';
+        });
+
+
+
         
     
     }

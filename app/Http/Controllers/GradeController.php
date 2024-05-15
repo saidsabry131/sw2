@@ -13,7 +13,14 @@ class GradeController extends Controller
      */
     public function index()
     {
-        //
+        $studentGrades = DB::table('tempp_table')
+        ->join('users', 'users.id', '=', 'tempp_table.user_id')
+        ->join('courses', 'courses.course_code', '=', 'tempp_table.course_code')
+        ->where('users.user_type', 'student')
+        ->select('users.name', 'courses.course_code', 'tempp_table.grade_score')
+        ->get();
+
+        return view('Grades.index', compact('studentGrades'));
     }
 
     /**
