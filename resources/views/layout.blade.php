@@ -34,11 +34,23 @@
                     
                 
                 <a href="{{ url('/users/')}}">Student</a>
-               
-                <a href="{{ url('/doctor') }}">Doctor</a>
+                    @cannot('admin-only-action')
+                    <a href="{{ url('/doctor') }}">Doctor</a>  
+                    @endcannot
+                
                 @endcan
                 <a href="{{ url('/courses/' . $user_id) }}">Courses</a>
-                <a href="{{ url('/grades/' . $user_id) }}">Grades</a>
+                @can("admin-only-action")
+                <a href="{{ url('/grades/' ) }}">Grades</a>
+                    
+                @endcan
+              
+                
+                    
+               
+                <a href="{{ url('/grades/' . $user_id) }}">Grades</a>    
+              
+                
                 <a href="">Enrollment</a>
                 <a href="">Payment</a>
               </div>

@@ -14,6 +14,8 @@
         <p class="card-text">Address : {{ $user->address }}</p>
         <p class="card-text">Phone : {{ $user->phone }}</p>
         <p class="card-text">Email : {{ $user->email }}</p>
+        <p class="card-text">Email : {{ $user->user_type }}</p>
+
   </div>
        
     </hr>
@@ -22,6 +24,7 @@
 </div>
 
 <br>
+
 <div class="card">
     <div class="card-header">Courses Sign</div>
     <div class="card-body">
@@ -30,7 +33,10 @@
                 <tr>
                     <th>Name</th>
                     <th>Course Code</th>
+                    @if ($user->user_type==="student")
                     <th>Course degree</th>
+                    @endif
+                   
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +44,11 @@
                 <tr>
                     <td>{{ $result->course_name }}</td>
                     <td>{{ $result->course_code }}</td>
+                    @if ($user->user_type==="student")
                     <td>{{ $result->grade_score }}</td>
+                    @endif
+                    
+                    
                 </tr>
                 @endforeach
             </tbody>

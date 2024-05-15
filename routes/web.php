@@ -49,7 +49,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DoctorController;
 
 
-Route::get('/doctor', [DoctorController::class, 'show'])->name('doctor.show');
+Route::middleware("auth","can:admin-only-action")->get('/doctor', [DoctorController::class, 'show'])->name('doctor.show');
 
 
 Route::middleware('auth')->group(function () {
