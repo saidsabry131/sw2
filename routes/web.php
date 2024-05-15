@@ -72,3 +72,5 @@ Route::resource('grades', GradeController::class);
 
 
 Route::middleware("auth")->resource('/courses', CourseController::class);
+Route::resource('/enrollment', EnrollmentController::class);
+Route::post('/enrollment/store', [EnrollmentController::class, 'store'])->name('enrollment.store');
