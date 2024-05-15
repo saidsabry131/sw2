@@ -1,4 +1,5 @@
 @extends('layout')
+
 @section('content')
 <div class="card">
     <div class="card-header">Courses Scores</div>
@@ -14,7 +15,7 @@
             <tbody>
                 @foreach ($subjects as $result)
                 <tr>
-                    <td>{{ $result->course_name }}</td>
+                    <td><a href="http://">{{ $result->course_name }}</a></td>
                     <td>{{ $result->course_code }}</td>
                     <td>{{ $result->grade_score }}</td>
                 </tr>
@@ -23,5 +24,4 @@
         </table>
     </div>
 </div>
-
 @endsection

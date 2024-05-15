@@ -7,6 +7,8 @@ use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,15 @@ class AppServiceProvider extends ServiceProvider
             $view->with('user_id', auth()->id());
         });
     
+
+        Validator::extend('valid_department', function ($attribute, $value, $parameters, $validator) {
+            // Define valid departments
+            $validDepartments = ['CS', 'IS', 'IT'];
+
+            // Check if the value is in the list of valid departments
+            return in_array($value, $validDepartments);
+        }, 'The :attribute must be a valid department (CS, IS, IT).');
+
     
       
     

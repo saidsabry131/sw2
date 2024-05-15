@@ -39,7 +39,7 @@ function() {
 
 
 
-Route::middleware("auth")->resource('/users', UserController::class);
+Route::middleware("auth","can:admin-only-action")->resource('/users', UserController::class);
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
 
@@ -47,6 +47,7 @@ Route::post('/user', [UserController::class, 'store'])->name('user.store');
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\EnrollmentController;
 
 
 Route::middleware("auth","can:admin-only-action")->get('/doctor', [DoctorController::class, 'show'])->name('doctor.show');
@@ -66,9 +67,16 @@ Route::middleware('auth')->prefix('users')->group(function () {
 
 
 
-Route::resource('grades', GradeController::class);
+Route::middleware("auth","can:admin-only-action")->resource('grades', GradeController::class);
 
+Route::middleware("auth","can:doctor-only-action")->resource('grades', GradeController::class);
 
 
 
 Route::middleware("auth")->resource('/courses', CourseController::class);
+
+
+Route::middleware("auth","can:student-only-action")->resource('/enrollment', EnrollmentController::class);
+
+Route::middleware("auth","can:student-only-action")->post('/enrollment/store', [EnrollmentController::class, 'store'])->name('enrollment.store');
+

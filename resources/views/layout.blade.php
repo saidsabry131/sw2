@@ -51,7 +51,7 @@
                 <a href="{{ url('/grades/' . $user_id) }}">Grades</a>    
               
                 
-                <a href="">Enrollment</a>
+                <a href="{{ route('enrollment.index') }}">Enrollment</a>
                 <a href="">Payment</a>
               </div>
               
